@@ -17,6 +17,7 @@ Automação desenvolvida para realizar buscas no portal The New York Times, carr
 Antes de rodar, crie um arquivo na raiz do projeto chamado `Config.env` e adicione a seguinte variável:
 
 urlBase='https://www.nytimes.com'
+
 urlDirecional='https://www.nytimes.com/search?query='
 
 ### Como rodar o projeto
