@@ -49,30 +49,30 @@ async function bannerCookies(page) {
   return false;
 }
 
-// Caso os cookies não forem aceitos pela forma automatica realizar de forma manual com está function 
-// export async function buscarTema(browser, urlBusca) {
-//   const page = await browser.newPage();
-//   await page.goto(urlBusca, { waitUntil: "networkidle2" });
 
-//   await limpaAbasInuteis(browser);
+ export async function buscarTema(browser, urlBusca) {
+  const page = await browser.newPage();
+  await page.goto(urlBusca, { waitUntil: "networkidle2" });
 
-//   // Caso o clique automatico não funcione,
-//   const sucessoAuto = await bannerCookies(page);
-//   if (!sucessoAuto) {
-//     console.log("Aguardando interação com banner de cookies...");
-//     try {
-//       await page.waitForSelector("#fides-accept-all-button", {
-//         timeout: 10000,
-//       });
-//       await page.click("#fides-accept-all-button");
-//     } catch (e) {
-//       console.log("Banner não apareceu ou já foi fechado.");
-//     }
-//   }
+  await limpaAbasInuteis(browser);
 
-//   await page.waitForSelector("ol > li", { timeout: 30000 });
-//   return page;
-// }
+  // Caso os cookies não forem aceitos pela forma automatica realizar de forma manual com está function 
+  const sucessoAuto = await bannerCookies(page);
+  if (!sucessoAuto) {
+    console.log("Aguardando interação com banner de cookies...");
+    try {
+      await page.waitForSelector("#fides-accept-all-button", {
+        timeout: 10000,
+      });
+      await page.click("#fides-accept-all-button");
+    } catch (e) {
+      console.log("Banner não apareceu ou já foi fechado.");
+    }
+  }
+
+  await page.waitForSelector("ol > li", { timeout: 30000 });
+  return page;
+}
 
 // automatiza o carregamento de notícias
 export async function lerCinquentaNoticias(page) {

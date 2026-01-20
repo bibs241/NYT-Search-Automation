@@ -10,6 +10,7 @@ const {
   lerCinquentaNoticias,
   extrairDados,
 } = require("./Pesquisa");
+
 //Interface de leitura e escrita no terminal
 const terminal = readline.createInterface({
   input: process.stdin,
@@ -26,7 +27,7 @@ async function exportarParaExcel(noticias, termoBusca) {
   const nomeArquivo = `noticias-${termoBusca.replace(/\s+/g, "_")}.xlsx`;
   const caminhoCompleto = path.join(pastaDestino, nomeArquivo);
 
-//Criar planilha e arquivo Excel e salvar
+//Criar planilha/arquivo Excel e salvar
   const planilha = XLSX.utils.json_to_sheet(noticias);
   const pastaTrabalho = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(pastaTrabalho, planilha, "Notícias");
