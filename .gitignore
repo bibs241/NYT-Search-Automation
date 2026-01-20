@@ -1,0 +1,5 @@
+node_modules/
+Config.env
+.env
+*.xlsx
+.DS_Store
