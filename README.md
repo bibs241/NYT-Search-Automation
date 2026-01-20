@@ -13,6 +13,12 @@ Bibliotecas que precisam ser instaladas para rodar o projeto:
 - **XLSX** (Geração da planilha)
 - **Dotenv** (Configurações de ambiente)
 
+### Configuração de Ambiente
+Antes de rodar, crie um arquivo na raiz do projeto chamado `Config.env` e adicione a seguinte variável:
+
+urlBase='https://www.nytimes.com'
+urlDirecional='https://www.nytimes.com/search?query='
+
 Como rodar o projeto
 1. Clone este repositório.
 2. Para rodar Utilize os comandos:
