@@ -20,6 +20,7 @@ export async function limpaAbasInuteis(browser) {
   }
 }
 
+// Detectar banner de cookie e clicar no botão accept all
 async function bannerCookies(page) {
   await espera(2500);
 
@@ -48,30 +49,32 @@ async function bannerCookies(page) {
   return false;
 }
 
-export async function buscarTema(browser, urlBusca) {
-  const page = await browser.newPage();
-  await page.goto(urlBusca, { waitUntil: "networkidle2" });
+// Caso os cookies não forem aceitos pela forma automatica realizar de forma manual com está function 
+// export async function buscarTema(browser, urlBusca) {
+//   const page = await browser.newPage();
+//   await page.goto(urlBusca, { waitUntil: "networkidle2" });
 
-  await limpaAbasInuteis(browser);
+//   await limpaAbasInuteis(browser);
 
-  // Caso o clique automatico não funcione, aciona o clique manual
-  const sucessoAuto = await bannerCookies(page);
-  if (!sucessoAuto) {
-    console.log("Aguardando interação com banner de cookies...");
-    try {
-      await page.waitForSelector("#fides-accept-all-button", {
-        timeout: 10000,
-      });
-      await page.click("#fides-accept-all-button");
-    } catch (e) {
-      console.log("Banner não apareceu ou já foi fechado.");
-    }
-  }
+//   // Caso o clique automatico não funcione,
+//   const sucessoAuto = await bannerCookies(page);
+//   if (!sucessoAuto) {
+//     console.log("Aguardando interação com banner de cookies...");
+//     try {
+//       await page.waitForSelector("#fides-accept-all-button", {
+//         timeout: 10000,
+//       });
+//       await page.click("#fides-accept-all-button");
+//     } catch (e) {
+//       console.log("Banner não apareceu ou já foi fechado.");
+//     }
+//   }
 
-  await page.waitForSelector("ol > li", { timeout: 30000 });
-  return page;
-}
+//   await page.waitForSelector("ol > li", { timeout: 30000 });
+//   return page;
+// }
 
+// automatiza o carregamento de notícias
 export async function lerCinquentaNoticias(page) {
   let carregados = 0;
   let checksSemNovidade = 0;
@@ -103,6 +106,7 @@ export async function lerCinquentaNoticias(page) {
   }
 }
 
+// extrair dados estruturados de até 50 notícias
 export async function extrairDados(page) {
   return await page.evaluate(() => {
     const itens = Array.from(document.querySelectorAll("ol > li")).slice(0, 50);
