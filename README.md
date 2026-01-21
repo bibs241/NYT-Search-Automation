@@ -25,4 +25,4 @@ urlDirecional='https://www.nytimes.com/search?query='
 2. Para rodar Utilize os comandos:
    ```bash
    npm install
-   node index.js
+   node index.js "technology"
